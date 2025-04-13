@@ -15,6 +15,7 @@
 
 use godot::prelude::*;
 
+mod custom_canvas;
 mod player;
 
 // #[gdextension]
