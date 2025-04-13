@@ -30,6 +30,7 @@ offset_right = 41.0
 offset_bottom = 131.0
 text = "Change tune"
 
+[connection signal="pulse_chage_request" from="Player" to="." method="_on_player_pulse_chage_request"]
 [connection signal="speed_increased" from="Player" to="." method="_on_player_speed_increased"]
 [connection signal="pressed" from="Button_Faster" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button_Play" to="." method="_on_button_play_pressed"]

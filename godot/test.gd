@@ -37,3 +37,8 @@ func _process(delta: float) -> void:
 func _on_button_play_pressed() -> void:
 	pulse_hz = rng.randf_range(130.8, 987.8)
 	print("pulse changed %s" % pulse_hz)
+
+func _on_player_pulse_chage_request() -> void:
+	pulse_hz = rng.randf_range(130.8, 987.8)
+	print("pulse changed auto %s" % pulse_hz)
+	pass # Replace with function body.

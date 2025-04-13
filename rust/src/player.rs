@@ -6,7 +6,7 @@ use godot::prelude::*;
 struct Player {
     speed: f64,
     angular_speed: f64,
-
+    tick: f64,
     base: Base<Sprite2D>,
 }
 
@@ -18,6 +18,7 @@ impl ISprite2D for Player {
         godot_print!("Hello, world!"); // Prints to the Godot console
 
         Self {
+            tick: 0.0,
             speed: 400.0,
             angular_speed: std::f64::consts::PI,
             base,
@@ -54,6 +55,14 @@ impl ISprite2D for Player {
         //     this.position() + velocity * delta as f32
         // );
     }
+
+    fn process(&mut self, delta: f64) {
+        self.tick += delta;
+        if self.tick > 2.0 {
+            self.tick = 0.0;
+            self.base_mut().emit_signal("pulse_chage_request", &[]);
+        }
+    }
 }
 
 #[godot_api]
@@ -66,4 +75,7 @@ impl Player {
 
     #[signal]
     fn speed_increased();
+
+    #[signal]
+    fn pulse_chage_request();
 }
