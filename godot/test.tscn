@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://jvy2o0xbvqx6"]
+[gd_scene load_steps=4 format=3 uid="uid://jvy2o0xbvqx6"]
 
 [ext_resource type="Script" uid="uid://cic0uvnnq66v4" path="res://test.gd" id="1_8uh7m"]
 [ext_resource type="Texture2D" uid="uid://bseej84d80a5t" path="res://icon.svg" id="1_37kl0"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_8uh7m"]
+mix_rate = 22050.0
+buffer_length = 0.17
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_8uh7m")
@@ -10,11 +14,22 @@ script = ExtResource("1_8uh7m")
 position = Vector2(100, 100)
 texture = ExtResource("1_37kl0")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button_Faster" type="Button" parent="."]
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Faster
 "
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamGenerator_8uh7m")
+playback_type = 1
+
+[node name="Button_Play" type="Button" parent="."]
+offset_top = 100.0
+offset_right = 41.0
+offset_bottom = 131.0
+text = "Change tune"
+
 [connection signal="speed_increased" from="Player" to="." method="_on_player_speed_increased"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button_Faster" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button_Play" to="." method="_on_button_play_pressed"]
