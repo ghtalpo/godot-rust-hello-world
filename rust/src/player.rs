@@ -1,3 +1,5 @@
+use std::time::{Duration, Instant};
+
 use godot::classes::Sprite2D;
 use godot::prelude::*;
 
@@ -57,11 +59,15 @@ impl ISprite2D for Player {
     }
 
     fn process(&mut self, delta: f64) {
+        let previous_time = Instant::now();
         self.tick += delta;
         if self.tick > 2.0 {
             self.tick = 0.0;
             self.base_mut().emit_signal("pulse_chage_request", &[]);
         }
+        let current_time = Instant::now();
+        let elapsed_time = current_time.duration_since(previous_time).as_nanos() as u64; //current_time - previous_time;
+        println!("elapsed? {}", elapsed_time);
     }
 }
 
